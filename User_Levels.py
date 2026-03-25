@@ -314,7 +314,37 @@ class Admin(User):
             print("-" * 100 + "|")
 
 
-class Reader(User):
+class Reader(User):     ##reader can view users data as an extra for their role
 
     ROLE = "reader"
     PERMS = {"view_self", "view_users"}
+
+    def __init__(self, name, email, password):
+        super().__init__(name, email, password)
+
+
+    def menu_options(self):
+        return("--Menu--"
+        "\n1. Show animals"
+        "\n2. Jokester"
+        "\n3. Log Out"
+        "\n-- DATABASE --"
+        "\n4. View User Information")
+
+
+    def view_data_r(self):
+        users_f = "User_Data.csv" 
+
+        print("Printing Current Database: ")
+        for i in range(1,3):
+            time.sleep(0.5)
+            print("." * i)
+
+        with open(users_f, newline="") as file:
+            file_read = csv.DictReader(file)
+
+            print(f"{'Name':<15} {'Email':<45} {'Password':<30}")
+            print("-" * 90 + "|")
+
+            for row in file_read:
+                print(f"{(row['name'].title()):<15} {row['email']:<45} {row['password']:<30}")
