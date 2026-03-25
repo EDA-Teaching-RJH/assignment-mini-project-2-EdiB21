@@ -34,6 +34,30 @@ class TestRegexFormatting(unittest.TestCase):
         self.assertFalse(re.match(r'^\w+@\w+\.(ac\.uk|gov\.uk|com|co\.uk)$', "wr.ong@email.uk.brz"))
 
 
+    def test_password_valid(self):
+        self.assertTrue(re.match(r'^(?=.*[a-zA-Z])(?=.*\d)\w{5,20}$', "apple123"))      #added password checks as they are part of formatting and it is important it is all functional too
+        self.assertTrue(re.match(r'^(?=.*[a-zA-Z])(?=.*\d)\w{5,20}$', "monkey29"))
+        self.assertTrue(re.match(r'^(?=.*[a-zA-Z])(?=.*\d)\w{5,20}$', "valid_pass1"))
+
+    
+    def test_password_too_short(self):
+        self.assertFalse(re.match(r'^(?=.*[a-zA-Z])(?=.*\d)\w{5,20}$', "ab1"))
+        self.assertFalse(re.match(r'^(?=.*[a-zA-Z])(?=.*\d)\w{5,20}$', "a1"))
+
+
+    def test_password_no_number(self):
+        self.assertFalse(re.match(r'^(?=.*[a-zA-Z])(?=.*\d)\w{5,20}$', "onlyletters"))
+
+    
+    def test_password_no_letter(self):
+        self.assertFalse(re.match(r'^(?=.*[a-zA-Z])(?=.*\d)\w{5,20}$', "12345"))
+
+
+    def test_password_special(self):
+        self.assertFalse(re.match(r'^(?=.*[a-zA-Z])(?=.*\d)\w{5,20}$', "bad!pass1"))
+        self.assertFalse(re.match(r'^(?=.*[a-zA-Z])(?=.*\d)\w{5,20}$', "inv@lid9"))
+
+
 class TestUserLevels(unittest.TestCase):        #overall checking that classes system works and roles are assigned correctly
 
     def test_admin_role(self):
@@ -52,7 +76,7 @@ class TestUserLevels(unittest.TestCase):        #overall checking that classes s
 
 
     def test_reader_subclass_user(self):
-        self.assertIsSubclass(User_Levels.Reader, User_Levels.User)     #checking if the classes are correctly subbed from User
+        self.assertTrue(issubclass(User_Levels.Reader, User_Levels.User))    #checking if the classes are correctly subbed from User
 
 
     def test_reader_not_subclass_admin(self):

@@ -91,7 +91,7 @@ class Admin(User):
         print("..")
         time.sleep(0.2)
 
-        with open(users_f, "a", newline="") as file:
+        with open(users_f, "a", newline="") as file:        #used to have a dictwriter for csv but that had continuously made new headers and didnt write on an empty row and overlapped an exsiting one, so it was replaced with 'writer'
             user_a = csv.writer(file)
             user_a.writerow([user_na, user_em, user_pa, user_ro])       #write to csv file on a new row (with statement uses 'a' to append)
 

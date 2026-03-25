@@ -5,7 +5,6 @@
 
 
 
-import tkinter
 import csv
 import time
 import REGEX_Check
@@ -179,6 +178,8 @@ def menu_option_two():
     jokes_1 = pyjokes.get_joke(category="all")      #found a joke library thats coding related just as another extra option for filler
     print(jokes_1)
     print("-" * 50)
+
+
 if __name__ == "__main__":
     main()
 
