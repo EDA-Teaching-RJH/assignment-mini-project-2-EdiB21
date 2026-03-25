@@ -348,3 +348,7 @@ class Reader(User):     ##reader can view users data as an extra for their role
 
             for row in file_read:
                 print(f"{(row['name'].title()):<15} {row['email']:<45} {row['password']:<30}")
+
+
+
+#Fully compelted on 11/04/26

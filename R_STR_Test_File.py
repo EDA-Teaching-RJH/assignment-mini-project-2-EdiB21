@@ -79,3 +79,7 @@ class TestMenuOptions(unittest.TestCase):
     def test_admin_no_extras(self):
         admin = User_Levels.Admin("edis", "myemail@gmail.com", "monkey29")      #checks that the option is not in menu options
         self.assertNotIn("9. Be silly", admin.menu_options())
+
+
+
+# Fully completed on 12/04/26

@@ -53,3 +53,6 @@ def password_format():
             print("Invalid Password Entry, Please refer to previous instructions!")
             time.sleep(0.3)
             print("Try Again")
+
+
+#Fully completed on 11/03/26
