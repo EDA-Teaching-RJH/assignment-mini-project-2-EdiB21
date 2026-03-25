@@ -16,7 +16,7 @@ import pyjokes
 
 
 def main():
-    login_screen()
+    login_screen() #main starts the code but then operations is passed through out the other functions which are in order for easy to follow
 
 
 def login_screen():
@@ -116,8 +116,69 @@ def user_register():
 
 def user_menu(user):
 
+    while True:
+        print(user.menu_options())
+        menu_choice = input(": ").strip()
 
-    
+        if menu_choice == "1":          #First three choices are the filler and log out options so are easy to implement
+            menu_option_one()
+        elif menu_choice == "2":
+            menu_option_two()
+        elif menu_choice == "3":
+            print("Logging out of system..")
+            time.sleep(0.5)
+            print("Closing program....")
+            time.sleep(0.2)
+            print("......")
+            time.sleep(0.2)
+            return False
+        elif menu_choice == "4":        #4 and onwards require checks of the users role to assure they have the permission to use them
+            if user.ROLE == "user":
+                user.view_data_u()
+            elif user.ROLE == "reader":
+                user.view_data_r()
+            elif user.ROLE == "admin":  #only admin has options for use further than 4 as reader only exists as a lower staff role to look at user data(may implement hashing for password if only 'reader' role) 
+                user.view_data()
+        elif menu_choice == "5":
+            if user.ROLE == "user":
+                print("You dont have access to these options")
+            elif user.ROLE == "reader":
+                print("You dont have access to these options")
+            elif user.ROLE == "admin":
+                user.add_user()
+        elif menu_choice == "6":
+            if user.ROLE == "user":
+                print("You dont have access to these options")
+            elif user.ROLE == "reader":
+                print("You dont have access to these options")
+            elif user.ROLE == "admin":
+                user.remove_user()
+        elif menu_choice == "7":
+            if user.ROLE == "user":
+                print("You dont have access to these options")
+            elif user.ROLE == "reader":
+                print("You dont have access to these options")
+            elif user.ROLE == "admin":
+                user.upd_user()
+        else:
+            print("Invalid Option. Try Again!")
+            time.sleep(0.2)
+            continue
+
+
+def menu_option_one():
+
+    animals = cowsay.char_names     #used cowsay and random for another filler option for fun which chooses a random animal to print
+    random_animal = random.choice(animals)
+    print(cowsay.get_output_string(random_animal, "I have appeared!"))
+
+
+def menu_option_two():
+
+    print("-" * 50)
+    jokes_1 = pyjokes.get_joke(category="all")      #found a joke library thats coding related just as another extra option for filler
+    print(jokes_1)
+    print("-" * 50)
 if __name__ == "__main__":
     main()
 
